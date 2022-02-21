@@ -1,0 +1,39 @@
+10 games
+steve win %: 60.0
+bob win %: 60.0
+mike win %: 30.0
+
+100 games
+steve win %: 36.0
+bob win %: 70.0
+mike win %: 53.0
+
+1,000 games
+steve win %: 32.800000000000004
+bob win %: 64.9
+mike win %: 48.3
+
+1,000,000 games
+steve win %: 33.3616
+bob win %: 66.6366
+mike win %: 49.9978
+
+10,000,000 games
+steve win %: 33.33889
+bob win %: 66.69091
+mike win %: 49.98557
+
+50,000,000 games
+steve win %: 33.341105999999996
+bob win %: 66.67744
+mike win %: 50.016276000000005
+
+100,000,000 games
+ssteve win %: 33.331683
+bob win %: 66.667048
+mike win %: 50.00242
+
+1,000,000,000 games
+steve win %: 33.332044100000005
+bob win %: 66.6652342
+mike win %: 50.00181190000001
