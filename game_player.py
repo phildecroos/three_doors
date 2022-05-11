@@ -62,6 +62,42 @@ clear()
 # according to math steve should win 1/3 of the time, bob should win 2/3 of the time
 # mike on average will do each strategy 50% of the time, so he should win 1/2 of the time (the average of 1/3 and 2/3)
 
+learning_games = 1000
+options = ["stick", "switch", "random"]
+winrate = [1.0, 1.0, 1.0]
+gamesplayed = [0, 0, 0]
+for i in range(learning_games):
+    # he decides what strategy to use based on which has the highest previous win rate
+    choice = winrate.index(max(winrate))
+    # prevents getting stuck on a worse strategy because of early bad luck with a better one
+    if gamesplayed[choice] == max(gamesplayed) and max(winrate) < 0.51:
+        choice = random.randint(0, 2)
+    # randomly picks a strategy if they all have the same winrate
+    if max(winrate) == min(winrate):
+        choice = random.randint(0, 2)
+    strategy = options[choice]
+    # he plays a game with that strategy
+    result = int(play_game(strategy))
+    # update win rate for that choice
+    wins = winrate[choice] * gamesplayed[choice] + result
+    gamesplayed[choice] += 1
+    winrate[choice] = wins / gamesplayed[choice]
+print("gamesplayed: " + str(gamesplayed))
+print("winrate: " + str(winrate))
+print("best strategy: " + options[winrate.index(max(winrate))])
+print("games spent on other strategies: " + str(sum(gamesplayed, 0) - gamesplayed[winrate.index(max(winrate))]))
+
+
+
+'''
+This is the second attempt at making the learning bot.
+This one learns by playing a set number of test games, comparing the win rates, and then playing the desired number of games
+using the strategy with the best win rate.
+The problem with this one is that it relies on a preset number of played games and will always have a chance of getting unlucky
+and not picking the best strategy, especially with a low number of test games.
+This one also doesn't continue to learn as it plays, it does its learning at the start and then just plays.
+'''
+'''
 # jeff is a bot the learns the best strategy for the game
 wins = [0, 0]
 gamesplayed = [0, 0]
@@ -86,7 +122,7 @@ elif switch_wr > stick_wr:
 else:
     best_strategy = "random"
 play("jeff", best_strategy)
-
+'''
 
 
 '''
